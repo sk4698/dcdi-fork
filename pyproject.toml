@@ -23,6 +23,6 @@ dependencies = [
 Homepage = "https://github.com/sk4698/dcdi-fork"
 Source = "https://github.com/sk4698/dcdi-fork"
 
-[tool.setuptools]
-packages = ["dcdi*"]
-include-package-data = true
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["dcdi*", "data*"]
