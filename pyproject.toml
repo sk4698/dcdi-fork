@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dcdi"
+version = "0.1.0"
+description = "Differentiable Causal Discovery from Interventional Data (python package)"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE.md" }
+authors = [
+  { name = "Sopho Kevlishvili" }
+]
+dependencies = [
+  "numpy",
+  "scipy",
+  "torch",
+  "cdt",
+]
+
+[project.urls]
+Homepage = "https://github.com/sk4698/dcdi-fork"
+Source = "https://github.com/sk4698/dcdi-fork"
+
+[tool.setuptools]
+packages = ["dcdi*"]
+include-package-data = true
