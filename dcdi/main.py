@@ -61,17 +61,17 @@ def main(opt, metrics_callback=_print_metrics, plotting_callback=None):
     # adjust some default hparams
     if opt.lr_reinit is None: opt.lr_reinit = opt.lr
 
-    # Use GPU
-    if opt.gpu:
-        if opt.float:
-            torch.set_default_tensor_type('torch.cuda.FloatTensor')
-        else:
-            torch.set_default_tensor_type('torch.cuda.DoubleTensor')
-    else:
-        if opt.float:
-            torch.set_default_tensor_type('torch.FloatTensor')
-        else:
-            torch.set_default_tensor_type('torch.DoubleTensor')
+    # # Use GPU
+    # if opt.gpu:
+    #     if opt.float:
+    #         torch.set_default_tensor_type('torch.cuda.FloatTensor')
+    #     else:
+    #         torch.set_default_tensor_type('torch.cuda.DoubleTensor')
+    # else:
+    #     if opt.float:
+    #         torch.set_default_tensor_type('torch.FloatTensor')
+    #     else:
+    #         torch.set_default_tensor_type('torch.DoubleTensor')
 
     # create experiment path
     if not os.path.exists(opt.exp_path):

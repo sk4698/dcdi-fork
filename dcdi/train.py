@@ -385,7 +385,8 @@ def train(model, gt_adjacency, gt_interv, train_data, test_data, opt, metrics_ca
                     w_adjs = w_adjs[:iter]
                 dump(model, save_path, 'model')
                 dump(opt.__dict__, save_path, 'opt')
-                if opt.num_vars <= 50 and not opt.no_w_adjs_log:
+                # if opt.num_vars <= 50 and not opt.no_w_adjs_log:
+                if not opt.no_w_adjs_log:
                     dump(w_adjs, save_path, 'w_adjs')
                 dump(nll_train, save_path, 'pseudo-nll-train')
                 dump(nll_val, save_path, 'pseudo-nll-val')
@@ -442,9 +443,11 @@ def train(model, gt_adjacency, gt_interv, train_data, test_data, opt, metrics_ca
                 # Compute SHD and SID metrics
                 pred_adj_ = model.adjacency.detach().cpu().numpy()
                 train_adj_ = train_data.adjacency.detach().cpu().numpy()
-                sid = float(cdt.metrics.SID(target=train_adj_, pred=pred_adj_))
+                # sid = float(cdt.metrics.SID(target=train_adj_, pred=pred_adj_))
+                sid = float("nan")
                 shd = float(shd_metric(pred_adj_, train_adj_))
-                shd_cpdag = float(cdt.metrics.SHD_CPDAG(target=train_adj_, pred=pred_adj_))
+                # shd_cpdag = float(cdt.metrics.SHD_CPDAG(target=train_adj_, pred=pred_adj_))
+                shd_cpdag = float("nan")
                 fn, fp, rev = edge_errors(pred_adj_, train_adj_)
                 del train_adj_, pred_adj_
 
