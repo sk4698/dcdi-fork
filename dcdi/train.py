@@ -200,7 +200,7 @@ def train(model, gt_adjacency, gt_interv, train_data, test_data, opt, metrics_ca
 
         # log metrics
         if iter % 100 == 0:
-            print("Iteration:", iter)
+            # print("Iteration:", iter)
             if opt.num_vars <= 5:
                 print("    w_adj({}):\n".format(w_adj_mode), w_adj.detach().cpu().numpy())
                 print("    current_adjacency:\n", model.adjacency.detach().cpu().numpy())
@@ -212,27 +212,27 @@ def train(model, gt_adjacency, gt_interv, train_data, test_data, opt, metrics_ca
                 current_adj = current_adj.cpu().numpy()
                 acyclic = is_acyclic(current_adj)
 
-            metrics_callback(stage="train", step=iter,
-                             metrics={"aug-lagrangian": aug_lagrangian.item(),
-                                      "aug-lagrangian-moving-avg": aug_lagrangian_ma[iter + 1],
-                                      "aug-lagrangian-val": aug_lagrangians_val[-1][1],
-                                      "nll": nlls[-1],
-                                      "nll-val": nlls_val[-1],
-                                      "nll-gap": nlls_val[-1] - nlls[-1],
-                                      "grad-norm-moving-average": grad_norm_ma[iter + 1],
-                                      "delta_gamma": delta_gamma,
-                                      "omega_gamma": opt.omega_gamma,
-                                      "delta_mu": delta_mu,
-                                      "omega_mu": opt.omega_mu,
-                                      "constraint_violation": constraint_violation,
-                                      "acyclicity_violation": h.item(),
-                                      "mu": mu,
-                                      "gamma": gamma,
-                                      "initial_lr": opt.lr,
-                                      "current_lr": opt.lr,
-                                      "is_acyclic": int(acyclic),
-                                      "true_edges": gt_adjacency.sum(),
-                                      })
+            # metrics_callback(stage="train", step=iter,
+            #                  metrics={"aug-lagrangian": aug_lagrangian.item(),
+            #                           "aug-lagrangian-moving-avg": aug_lagrangian_ma[iter + 1],
+            #                           "aug-lagrangian-val": aug_lagrangians_val[-1][1],
+            #                           "nll": nlls[-1],
+            #                           "nll-val": nlls_val[-1],
+            #                           "nll-gap": nlls_val[-1] - nlls[-1],
+            #                           "grad-norm-moving-average": grad_norm_ma[iter + 1],
+            #                           "delta_gamma": delta_gamma,
+            #                           "omega_gamma": opt.omega_gamma,
+            #                           "delta_mu": delta_mu,
+            #                           "omega_mu": opt.omega_mu,
+            #                           "constraint_violation": constraint_violation,
+            #                           "acyclicity_violation": h.item(),
+            #                           "mu": mu,
+            #                           "gamma": gamma,
+            #                           "initial_lr": opt.lr,
+            #                           "current_lr": opt.lr,
+            #                           "is_acyclic": int(acyclic),
+            #                           "true_edges": gt_adjacency.sum(),
+            #                           })
 
         # plot
         if iter % opt.plot_freq == 0:
